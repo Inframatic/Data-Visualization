@@ -1,14 +1,21 @@
 require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
+require 'csv'
 
-File.open('divs_for_top_movies.html', 'w') do |html|
-	movies_with_ratings = []
-	File.open("movies.txt", "r") do |txt|
-		while (line = txt.gets)
-			movies_with_reviews << [line.chomp, txt.gets.to_i]
+header = ['title', 'rating']
+
+CSV.foreach('movies.csv') do |row|
+
+	header.each_index do |i| 
+		if header[i] != row[i]
+			puts "#{header[i]} is #{row[i]}"
 		end
 	end
 end
+
+
+	# for i in 0..100 do
+	# 	div_height = (100-())
 
 
